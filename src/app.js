@@ -12,8 +12,9 @@ const unlinkAsync = promisify(fs.unlink)
 const app = express()
 const port = process.env.PORT || 3000
 const upload = multer({ dest: __dirname + '/../files' })
+const homeURL = process.env.HOME_URL || '/'
 
-var mongoDB = process.env.DBURI || 'mongodb://root:root@localhost:27017/simple-catalog?authSource=admin';
+const mongoDB = process.env.DBURI || 'mongodb://root:root@localhost:27017/simple-catalog?authSource=admin';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on('error', (e) => {
     throw 'Can\'t connect to DB'
@@ -37,7 +38,7 @@ app.get('/', async (req, res) => {
         error = err
         console.error(err)
     }
-    res.render('index', { items: items, error: error })
+    res.render('index', { items: items, error: error, homeURL: homeURL })
 })
 
 app.get('/image/:imageUrl', async (req, res) => {
@@ -73,7 +74,7 @@ app.post('/add', upload.single('image'), async (req, res) => {
         return res.send('Can\'t save the record.')
     }
 
-    res.redirect(301, '/')
+    res.redirect(301, homeURL)
 })
 
 app.get('/remove/:itemId', upload.single('image'), async (req, res) => {
@@ -96,7 +97,7 @@ app.get('/remove/:itemId', upload.single('image'), async (req, res) => {
 
     await unlinkAsync(filePath)
 
-    res.redirect(301, '/')
+    res.redirect(301, homeURL)
 })
 
 app.listen(port, () => {

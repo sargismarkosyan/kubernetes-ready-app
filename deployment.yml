@@ -13,8 +13,8 @@ spec:
       env:
         - name: DBURI
           value: "mongodb://root:root@mongo:27017/simple-catalog?authSource=admin"
-      ports:
-        - containerPort: 80
+        - name: HOME_URL
+          value: /simple-catalog/
 ---
 kind: Service
 apiVersion: v1

@@ -4,7 +4,7 @@
 <p><pre>{{error}}</pre></p>
 {{/error}}
 
-<form action="/add" method="post" enctype="multipart/form-data">
+<form action="{{homeURL}}add" method="post" enctype="multipart/form-data">
     <p>
         <label for="title">Title:</label><br>
         <input type="text" required name="title" id="title" />
@@ -21,8 +21,8 @@
 <ul>
     {{#items}}
     <li>
-        <img width="100" height="100" src="/image/{{imageUrl}}" alt="{{title}}" />
-        <h4>{{title}} (<a href="/remove/{{_id}}">remove</a>)</h4>
+        <img width="100" height="100" src="{{homeURL}}image/{{imageUrl}}" alt="{{title}}" />
+        <h4>{{title}} (<a href="{{homeURL}}remove/{{_id}}">remove</a>)</h4>
     </li>
     {{/items}}
 </ul>
