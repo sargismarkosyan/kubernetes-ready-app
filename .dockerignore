@@ -1,0 +1,8 @@
+.vscode/
+db/
+files/
+node_modules/
+
+deployment.yml
+docker-compose.yml
+Dockerfile

@@ -1,0 +1,19 @@
+{
+  "name": "simple-catalog-docker",
+  "version": "1.0.0",
+  "description": "simple website with file upload and mongodb, uses docker",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13",
+    "multer": "^1.4.2",
+    "mustache-express": "^1.3.0"
+  }
+}
