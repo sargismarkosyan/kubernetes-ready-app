@@ -7,6 +7,10 @@ metadata:
     app.kubernetes.io/name: simple-catalog
 spec:
   replicas: 1
+  volumes:
+    - name: simple-catalog-files
+      persistentVolumeClaim:
+        claimName: simple-catalog-files-claim
   containers:
     - name: simple-catalog
       image: "sargismarkosyan/kubernetes-ready-app:latest"
@@ -15,6 +19,9 @@ spec:
           value: "mongodb://root:root@mongo:27017/simple-catalog?authSource=admin"
         - name: HOME_URL
           value: /simple-catalog/
+      volumeMounts:
+        - mountPath: /app/files
+          name: simple-catalog-files
 ---
 kind: Service
 apiVersion: v1
